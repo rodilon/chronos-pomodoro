@@ -7,9 +7,7 @@ export function App() {
   return (
     // react fragment esse <> </> para nao precisar criar uma div desnecessaria
     <>
-      <Heading attr={123} attr2={'String'}>
-        Olá mundo!
-      </Heading>
+      <Heading>Olá mundo!</Heading>
 
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
