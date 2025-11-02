@@ -1,9 +1,16 @@
+import './styles/theme.css';
+import './styles/global.css';
+import { Heading } from './components/Heading';
+
 export function App() {
   console.log('Oi');
   return (
     // react fragment esse <> </> para nao precisar criar uma div desnecessaria
     <>
-      <h1>Olá, mundo!</h1>
+      <Heading attr={123} attr2={'String'}>
+        Olá mundo!
+      </Heading>
+
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
