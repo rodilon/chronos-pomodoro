@@ -1,11 +1,26 @@
-import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import {
+  HistoryIcon,
+  HouseIcon,
+  MoonIcon,
+  SettingsIcon,
+  SunIcon,
+} from 'lucide-react';
 import styles from './styles.module.css';
 import { useState, useEffect } from 'react';
 
 type AvailableThemes = 'dark' | 'light';
 
 export function Menu() {
-  const [theme, setTheme] = useState<AvailableThemes>('dark');
+  const [theme, setTheme] = useState<AvailableThemes>(() => {
+    const savedTheme =
+      (localStorage.getItem('theme') as AvailableThemes) || 'dark';
+    return savedTheme;
+  });
+
+  const nextThemeIcon = {
+    dark: <SunIcon size={48} />,
+    light: <MoonIcon size={48} />,
+  };
 
   function handleThemeToggle(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -25,13 +40,15 @@ export function Menu() {
   // }, []);
 
   useEffect(() => {
-    console.log(
-      'useEffect com dependencia - executa quando a dependencia muda',
-    );
+    // console.log(
+    //   'useEffect com dependencia - executa quando a dependencia muda',
+    // );
     document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
 
     return () => {
-      console.log('cleanup - executa antes do próximo useEffect');
+      // console.log('cleanup - executa antes do próximo useEffect');
+      // utilizada quando estamos listeners ou algo que precise ser limpo
     };
   }, [theme]);
 
@@ -68,7 +85,7 @@ export function Menu() {
         title='Mudar tema'
         onClick={handleThemeToggle}
       >
-        <SunIcon size={48} />
+        {nextThemeIcon[theme]}
       </a>
     </nav>
   );
