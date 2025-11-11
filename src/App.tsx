@@ -7,13 +7,32 @@ import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { Cycles } from './components/Cycles';
 import { DefaultButton } from './components/DefaultButton';
-import { CircleStopIcon, PlayCircleIcon } from 'lucide-react';
+import { PlayCircleIcon } from 'lucide-react';
 import { Footer } from './components/Footer';
+import { useState } from 'react';
+import { Heading } from './components/Heading';
 
 export function App() {
+  // const [numero, setNumero] = useState(() => {
+  //   // utilizado para inicializar valores pesados apenas uma vez
+  //   console.log('Lazy initialization');
+  //   return 0;
+  // });
+
+  // usado para quando o novo estado depende do estado anterior
+  const [numero, setNumero] = useState(0);
+
+  function incrementar() {
+    // maneira correta de atualizar o estado baseado no valor anterior do estado
+    setNumero(prevState => prevState + 1);
+  }
+
   return (
     // react fragment esse <> </> para nao precisar criar uma div desnecessaria
     <>
+      <Heading>Numero: {numero}</Heading>
+      <button onClick={incrementar}>Incrementar</button>
+
       <Container>
         <Logo />
       </Container>
