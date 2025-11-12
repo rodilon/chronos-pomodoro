@@ -1,5 +1,3 @@
-import './styles/theme.css';
-import './styles/global.css';
 import { Container } from '../../Container';
 import { Logo } from '../../Logo';
 import { Menu } from '../../Menu';
