@@ -2,7 +2,7 @@ import { PlayCircleIcon } from 'lucide-react';
 import { Cycles } from '../Cycles';
 import { DefaultButton } from '../DefaultButton';
 import { DefaultInput } from '../DefaultInput';
-import { useTaskContext } from '../../context/TaskContext';
+import { useTaskContext } from '../../context/TaskContext/useTaskContext';
 
 export function MainForm() {
   const { setState } = useTaskContext();
