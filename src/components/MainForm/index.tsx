@@ -60,11 +60,12 @@ export function MainForm() {
         <DefaultInput
           labelText='task'
           id='meuInput'
-          type='string'
+          type='text'
           placeholder='Digite algo'
           // value={taskName}
           // onChange={e => setTaskName(e.target.value)}
           ref={taskNameInput}
+          disabled={!!state.activeTask}
         />
       </div>
 
