@@ -47,9 +47,20 @@ export function MainForm() {
         config: { ...prevState.config },
         activeTask: newTask,
         currentCycle: nextCycle,
-        secondsRemaining, // conferir
+        secondsRemaining,
         formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
         tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
+
+  function handleInterruptTask() {
+    setState(prevState => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
       };
     });
   }
@@ -79,21 +90,29 @@ export function MainForm() {
         </div>
       )}
 
+      {/* 
+      na sobreposicao de Componentes do react houve um problema de realizar o submit do primeiro botao no segundo, ocasionando um bug.
+      pra solucionar utilizamos a criacao do botao somente se a condicao for verdadeira e tbm colocamos o key pra forcar que cada botao é unico */}
       <div className='formRow'>
-        {!state.activeTask ? (
+        {!state.activeTask && (
           <DefaultButton
             type='submit'
             aria-label='Iniciar nova tarefa'
             title='Iniciar nova tarefa'
             icon={<PlayCircleIcon />}
+            key={'botao_submit'}
           />
-        ) : (
+        )}
+
+        {!!state.activeTask && (
           <DefaultButton
+            onClick={handleInterruptTask}
             aria-label='Interromper tarefa atual'
             title='Interromper tarefa atual'
             type='button'
             color='red'
             icon={<StopCircleIcon />}
+            key={'botao_button'}
           />
         )}
       </div>
